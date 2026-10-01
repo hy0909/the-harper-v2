@@ -1,0 +1,35 @@
+/* THE HARPER 디자인 토큰 — 출처: docs/design-system.md (Brand Identity Guide v1.0) */
+:root {
+  /* 컬러 */
+  --color-key: #6F4A3A;    /* 코코아 브라운: 로고 배경, 대표 컬러, 주요 버튼 */
+  --color-ground: #FAF9F6; /* 그라운드: 배경, 여백 */
+  --color-ink: #3A362F;    /* 잉크: 본문 텍스트, 워드마크 */
+  --color-point: #D6A3AB;  /* 안틱 로즈: 메인 로고 워드마크, 배지, 강조 (작은 면적만) */
+
+  /* 확장 팔레트(가이드 03장): 시즌·캡슐 콘텐츠에만, 로고·핵심 UI에는 쓰지 않는다. 바탕 전용, 글자는 잉크 */
+  --color-blush: #E8B4B8;      /* 블라섬 블러시 */
+  --color-beige: #D8C3A5;      /* 밀크티 베이지 */
+  --color-jade: #8FA693;       /* 제이드 위스퍼 */
+  --color-terracotta: #C97B5C; /* 테라코타 클레이: 큰 글자·숫자만 */
+  --color-amber: #C9A15C;      /* 앰버 골드 */
+
+  /* 그레이스케일 */
+  --gray-900: #3A362F;     /* = Ink, headlines/body */
+  --gray-700: #5C5750;     /* secondary text */
+  --gray-500: #857F76;     /* muted text, captions, placeholders */
+  --gray-300: #B8B3AA;     /* strong hairlines, input borders, disabled text */
+  --gray-200: #D9D5CE;     /* soft hairlines, dividers */
+  --gray-100: #ECE9E3;     /* subtle surfaces, image placeholders */
+  --gray-50: #F4F2EE;      /* alternate section background */
+
+  /* 서체 */
+  --font-display: "Cormorant Garamond", Georgia, serif; /* 헤드라인 전용 */
+  --font-logo: "Tinos", "Times New Roman", Times, serif; /* 워드마크(로고) 전용. 로고 이미지와 같은 Times 계열 */
+  --font-body: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
