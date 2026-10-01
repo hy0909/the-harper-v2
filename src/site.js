@@ -109,6 +109,7 @@ const translations = {
     'form-option-institutional': '기관·관광공사 협업 문의',
     'form-option-other': '기타',
     'form-submit': '보내기',
+    'form-note': '영업일 기준 2일 안에 답장드립니다.',
     'form-sending': '보내는 중…',
     'form-success': '문의가 접수됐습니다. 영업일 기준 2일 안에 답장드리겠습니다.',
     'form-fallback': '자동 발송에 실패해 메일 앱을 엽니다. 열리지 않으면 contact@theharper.co.kr 로 직접 보내 주세요.',
@@ -223,6 +224,7 @@ const translations = {
     'form-option-institutional': 'Institutional & KTO collaboration',
     'form-option-other': 'Other',
     'form-submit': 'Send',
+    'form-note': 'We reply within 2 business days.',
     'form-sending': 'Sending…',
     'form-success': 'Thanks, we received your inquiry. We reply within 2 business days.',
     'form-fallback': 'Automatic sending failed, so we are opening your mail app. If it does not open, email contact@theharper.co.kr directly.',
@@ -367,6 +369,13 @@ function initContactForm() {
     confirmation.classList.toggle('form__confirmation--error', !!isError);
     confirmation.hidden = false;
   };
+
+  const textarea = document.getElementById('contact-message');
+  if (textarea) {
+    const grow = () => { textarea.style.height = 'auto'; textarea.style.height = `${textarea.scrollHeight}px`; };
+    textarea.addEventListener('input', grow);
+    form.addEventListener('reset', () => setTimeout(grow, 0));
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

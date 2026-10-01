@@ -823,45 +823,80 @@ em { font-style: italic; font-synthesis: none; }
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 32px;
-  border-radius: var(--radius-card);
-  border: 1px solid var(--on-dark-line);
+  gap: 36px;
+  padding-top: 8px;
 }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.form__field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 40px; }
+.form__field { display: flex; flex-direction: column; gap: 6px; min-width: 0; position: relative; }
 .form__label {
   font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--on-dark);
+  letter-spacing: 0.1em;
+  color: var(--on-dark-muted);
+  transition: color 200ms ease;
 }
+.form__field:focus-within .form__label { color: var(--on-dark); }
+
+/* 어두운 바탕 입력칸: 밑줄 하나만 둔다. 초점이 가면 밑줄이 왼쪽에서 밝게 차오른다 */
 .form__input {
   font-family: var(--font-body);
-  font-size: 14px;
-  padding: 12px 16px;
-  min-height: 40px;
-  border: 1px solid var(--gray-300);
-  border-radius: var(--radius-btn);
-  color: var(--color-ink);
-  background: white;
-  transition: border-color 200ms ease;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 10px 0 14px;
+  border: none;
+  border-radius: 0;
+  color: var(--on-dark);
+  background: transparent;
   width: 100%;
+  border-bottom: 1px solid var(--on-dark-line);
+  transition: border-color 200ms ease;
 }
-.form__input::placeholder { color: var(--color-ink); opacity: 0.5; }
-.form__input:focus { outline: none; border-color: var(--color-ink); }
-.form__textarea { min-height: 120px; resize: vertical; }
+.form__field::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--on-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+.form__field:focus-within::after { transform: scaleX(1); }
+.form__input::placeholder { color: var(--on-dark-faint); opacity: 1; }
+.form__input:focus { outline: none; }
+.form__input:-webkit-autofill,
+.form__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--on-dark);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-ink) inset;
+  transition: background-color 9999s ease-out;
+}
+.form__textarea { min-height: 96px; resize: none; overflow: hidden; }
 .form__select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%233A362F' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  color-scheme: dark;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23FAF9F6' stroke-width='1.2' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right 2px center;
   background-size: 12px;
-  padding-right: 40px;
+  padding-right: 32px;
 }
-.form__submit { align-self: flex-start; margin-top: 4px; }
+.form__select option { color: var(--color-ink); background: white; }
+
+.form__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.form__note { font-size: 13px; font-weight: 300; color: var(--on-dark-muted); max-width: 320px; }
+.form__submit { padding-left: 32px; padding-right: 24px; }
 .form__confirmation { font-size: 13px; color: var(--on-dark); }
 .form__confirmation--error { color: var(--color-point); }
 .form__honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
@@ -869,9 +904,11 @@ em { font-style: italic; font-synthesis: none; }
   .contact { grid-template-columns: 1fr; gap: 48px; }
 }
 @media (max-width: 768px) {
-  .contact__form { padding: 20px; }
-  .form__row { grid-template-columns: 1fr; }
-  .form__submit { align-self: stretch; }
+  .contact__form { gap: 28px; }
+  .form__row { grid-template-columns: 1fr; gap: 28px; }
+  .form__input { font-size: 16px; }
+  .form__foot { flex-direction: column; align-items: stretch; }
+  .form__submit { width: 100%; }
 }
 
 /* ------------------------------------------------------------------
