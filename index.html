@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link rel="preload" as="image" href="src/assets/hero-phone-1045.webp?v=2" imagesrcset="src/assets/hero-phone-520.webp?v=2 520w, src/assets/hero-phone-1045.webp?v=2 1045w" imagesizes="(max-width: 900px) 100vw, 46vw" fetchpriority="high">
-  <link rel="stylesheet" href="src/styles/site.css?v=9">
+  <link rel="stylesheet" href="src/styles/site.css?v=10">
   <title data-i18n="site-title">더하퍼 — K-패션 에디터 큐레이션, 서울</title>
 </head>
 <body>
@@ -81,11 +81,8 @@
     <section id="hero" class="hero">
       <div class="hero__frame">
         <div class="hero__copy">
-          <p class="hero__intro" data-i18n="hero-subcopy">K-패션 에디터가 큐레이션하는 성수·한남·압구정 쇼핑 체험</p>
-          <h1 class="hero__headline">
-            <span class="hero__word">Seoul,</span>
-            <span class="hero__line" data-i18n="hero-headline-2">Curated by Editors.</span>
-          </h1>
+          <h1 class="hero__title" data-i18n-html="hero-title">K-패션 에디터가 큐레이션하는<br>성수·한남·압구정 쇼핑 체험</h1>
+          <p class="hero__sub"><span class="hero__word">Seoul,</span> <span data-i18n="hero-headline-2">Curated by Editors.</span></p>
           <ul class="hero__tags" aria-label="Focus Area">
             <li class="hero__tag"><span class="hero__dot"></span><span data-i18n="map-seongsu">성수</span></li>
             <li class="hero__tag"><span class="hero__dot"></span><span data-i18n="map-hannam">한남</span></li>
@@ -406,6 +403,6 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
-  <script src="src/site.js?v=6"></script>
+  <script src="src/site.js?v=7"></script>
 </body>
 </html>

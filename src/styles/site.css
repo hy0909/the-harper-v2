@@ -266,35 +266,31 @@ em { font-style: italic; font-synthesis: none; }
   grid-area: copy;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center; /* 레퍼런스처럼 왼쪽 세로 가운데 */
   gap: 28px;
-  padding-bottom: 16px;
   min-width: 0;
 }
-.hero__intro {
-  max-width: 360px;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--gray-700);
+/* 제목: 한글 두 줄(줄바꿈은 "큐레이션하는" 뒤) */
+.hero__title {
+  font-family: var(--font-body);
+  font-size: clamp(30px, 3.4vw, 50px);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.016em;
+  color: var(--color-ink);
+  word-break: keep-all;
 }
-.hero__headline {
+/* 제목 아래 작은 영문 한 줄 */
+.hero__sub {
   font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 28px);
   font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--gray-700);
+  margin-top: -8px;
 }
-.hero__word { font-size: clamp(88px, 12vw, 200px); display: inline-block; }
-.hero__line {
-  font-size: clamp(30px, 3.2vw, 52px);
-  font-style: italic;
-  line-height: 1.1;
-  padding-left: 0.08em;
-}
+.hero__sub .hero__word { font-weight: 500; color: var(--color-ink); }
 .hero__tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .hero__tag {
   display: inline-flex;
@@ -328,7 +324,7 @@ em { font-style: italic; font-synthesis: none; }
 .hero__visual {
   grid-area: visual;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-end;
   min-width: 0;
   min-height: 0;
@@ -336,9 +332,9 @@ em { font-style: italic; font-synthesis: none; }
 .hero__phone {
   width: auto;
   max-width: 100%;
-  height: min(calc(100svh - var(--header-h) - 120px), 820px);
+  height: min(calc(100svh - var(--header-h) - 110px), 840px);
   object-fit: contain;
-  object-position: bottom right;
+  object-position: center right;
 }
 
 .hero__foot {
@@ -368,9 +364,9 @@ em { font-style: italic; font-synthesis: none; }
     padding-bottom: 20px;
     row-gap: 32px;
   }
-  .hero__copy { justify-content: flex-start; gap: 22px; padding-bottom: 0; }
-  .hero__word { font-size: clamp(88px, 24vw, 150px); }
-  .hero__line { font-size: 28px; }
+  .hero__copy { justify-content: flex-start; gap: 20px; }
+  .hero__title { font-size: clamp(26px, 7vw, 32px); }
+  .hero__sub { font-size: 20px; margin-top: -4px; }
   .hero__visual { justify-content: center; }
   .hero__phone { height: auto; width: min(100%, 420px); max-height: 70svh; object-position: center; }
   .hero__foot { margin-top: 0; }
