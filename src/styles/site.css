@@ -242,13 +242,13 @@ em { font-style: italic; font-synthesis: none; }
 }
 
 /* ------------------------------------------------------------------
-   히어로: 밝은 바탕(사진 배경색 #FEFEFE) + 왼쪽 글, 오른쪽 앱 화면 폰 사진
+   히어로: 밝은 바탕(사진 배경색 #FBF9F5) + 왼쪽 글, 오른쪽 앱 화면 폰 사진
    ------------------------------------------------------------------ */
 .hero {
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
-  background: linear-gradient(to bottom, #FEFEFE 0%, #FEFEFE 70%, #F0EFF2 100%); /* 사진 아래쪽 옅은 회색과 이어진다 */
+  background: #FBF9F5; /* 폰 사진의 배경색 그대로(그라운드 #FAF9F6와 거의 같다) */
   color: var(--color-ink);
   overflow: hidden;
   display: flex;
@@ -303,7 +303,7 @@ em { font-style: italic; font-synthesis: none; }
   padding: 6px 14px 6px 10px;
   border-radius: 9999px;
   border: 1px solid var(--gray-300);
-  background: rgba(255, 255, 255, 0.7);
+  background: transparent;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.02em;
