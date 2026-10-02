@@ -436,10 +436,15 @@ function initPicksFilter() {
   const cards = document.querySelectorAll('.pick');
   if (!tabs.length) return;
 
+  // 한 줄(3장)만 보여 준다. 탭에 맞는 카드 중 앞의 세 장까지만.
+  const MAX_VISIBLE = 3;
   const apply = (area) => {
+    let shown = 0;
     cards.forEach(card => {
-      const show = area === 'all' || card.dataset.area === area || card.dataset.area === 'all';
+      const match = area === 'all' || card.dataset.area === area;
+      const show = match && shown < MAX_VISIBLE;
       if (show) {
+        shown += 1;
         card.removeAttribute('hidden');
         card.classList.add('is-in');
       } else {
@@ -447,6 +452,7 @@ function initPicksFilter() {
       }
     });
   };
+  apply('all');
 
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => {
