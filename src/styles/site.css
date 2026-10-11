@@ -350,12 +350,13 @@ em { font-style: italic; font-synthesis: none; }
   min-width: 0;
   min-height: 0;
 }
+/* 정사각형 목업 사진: 모서리 둥글게 */
 .hero__phone {
-  width: auto;
-  max-width: 100%;
-  height: min(calc(100svh - var(--header-h) - 110px), 840px);
-  object-fit: contain;
-  object-position: center left;
+  width: min(100%, calc(100svh - var(--header-h) - 110px), 640px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  border-radius: 24px;
 }
 
 .hero__foot {
@@ -389,7 +390,7 @@ em { font-style: italic; font-synthesis: none; }
   .hero__title { font-size: clamp(26px, 7vw, 32px); }
   .hero__sub { font-size: 20px; margin-top: -4px; }
   .hero__visual { justify-content: center; }
-  .hero__phone { height: auto; width: min(100%, 420px); max-height: 70svh; object-position: center; }
+  .hero__phone { width: min(100%, 420px); border-radius: 20px; }
   .hero__foot { margin-top: 0; }
   .hero__meta--right { display: none; }
 }
