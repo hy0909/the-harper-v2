@@ -858,12 +858,11 @@ em { font-style: italic; font-synthesis: none; }
 .form__foot {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 24px;
   flex-wrap: wrap;
   margin-top: 4px;
 }
-.form__note { font-size: 13px; font-weight: 300; color: var(--on-dark-muted); max-width: 320px; }
 .form__submit { padding-left: 32px; padding-right: 24px; }
 .form__confirmation { font-size: 13px; color: var(--on-dark); }
 .form__confirmation--error { color: var(--color-point); }
