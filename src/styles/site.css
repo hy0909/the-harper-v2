@@ -891,7 +891,7 @@ em { font-style: italic; font-synthesis: none; }
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 48px;
-  align-items: end;
+  align-items: start;
 }
 .footer__wordmark {
   font-family: var(--font-logo);
