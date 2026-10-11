@@ -297,7 +297,7 @@ em { font-style: italic; font-synthesis: none; }
   font-size: clamp(30px, 3.4vw, 50px);
   font-weight: 700;
   line-height: 1.32;
-  letter-spacing: -0.016em;
+  letter-spacing: -0.03em; /* 자간 -3% */
   color: var(--color-ink);
   word-break: keep-all;
 }
