@@ -1,4 +1,4 @@
-@import url("tokens.css?v=1");
+@import url("tokens.css?v=2");
 
 /* ------------------------------------------------------------------
    THE HARPER v2 — 어두운 사진 위 큰 세리프 제목, 띠(band)가 어두움·밝음을 번갈아 간다.
@@ -124,11 +124,11 @@ em { font-style: italic; font-synthesis: none; }
   padding: 0 var(--gutter);
 }
 .header__logo { display: flex; align-items: center; height: 100%; }
-/* 워드마크: 로고 이미지와 같은 Tinos Regular(400), 자간 넓게 */
+/* 워드마크: Cormorant Garamond 500, 자간 넓게 */
 .logo {
   font-family: var(--font-logo);
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-ink);
@@ -491,7 +491,7 @@ em { font-style: italic; font-synthesis: none; }
 }
 .tier {
   display: grid;
-  grid-template-columns: 64px minmax(0, 1.4fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 24px;
   padding: 26px 0;
@@ -499,20 +499,22 @@ em { font-style: italic; font-synthesis: none; }
   transition: padding-left 300ms ease;
 }
 .tier:hover { padding-left: 8px; }
-.tier__index {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-style: italic;
-  color: var(--gray-500);
-}
+/* 위: 한글 설명을 크게(주), 아래: 영문 이름을 작게(부) */
 .tier__name {
-  font-family: var(--font-display);
-  font-size: clamp(30px, 3.6vw, 52px);
+  font-family: var(--font-headline);
+  font-size: clamp(24px, 2.8vw, 40px);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.01em;
 }
-.tier__desc { font-size: 15px; font-weight: 300; color: var(--gray-700); }
+.tier__desc {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
 .tier-badge {
   justify-self: end;
   font-family: var(--font-body);
@@ -531,11 +533,10 @@ em { font-style: italic; font-synthesis: none; }
 .tier-badge--upcoming { background: transparent; border: 1px solid var(--gray-300); color: var(--gray-500); }
 @media (max-width: 768px) {
   .tiers { margin-top: 48px; }
-  .tier { grid-template-columns: 36px minmax(0, 1fr) auto; grid-template-areas: "i n b" "i d d"; gap: 8px 16px; padding: 20px 0; }
+  .tier { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n b" "d d"; gap: 6px 16px; padding: 20px 0; }
   .tier:hover { padding-left: 0; }
-  .tier__index { grid-area: i; }
   .tier__name { grid-area: n; }
-  .tier__desc { grid-area: d; font-size: 14px; }
+  .tier__desc { grid-area: d; font-size: 13px; }
   .tier-badge { grid-area: b; }
 }
 
@@ -560,7 +561,6 @@ em { font-style: italic; font-synthesis: none; }
   gap: 16px;
   flex-wrap: wrap;
 }
-.picks__byline { font-family: var(--font-body); font-size: 13px; font-weight: 300; color: var(--gray-500); }
 .picks__filters { display: flex; gap: 20px; }
 .picks__tab {
   background: none; border: none;
