@@ -467,6 +467,12 @@ em { font-style: italic; font-synthesis: none; }
   .values { margin-top: 48px; grid-template-columns: 1fr; gap: 28px; }
 }
 
+/* Spots 영역: 한글과 섞여 쓰는 숫자·영문(1:1, 1박, VIP, K-)도 세리프 대신 한글 서체(Noto Sans KR)로 */
+#spots .statement,
+#spots .tier__name,
+#spots .picks__title,
+#spots .pick__title { font-family: var(--font-body); }
+
 /* ------------------------------------------------------------------
    Spots: 티어 목록
    ------------------------------------------------------------------ */
