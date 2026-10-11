@@ -312,22 +312,6 @@ em { font-style: italic; font-synthesis: none; }
   margin-top: -8px;
 }
 .hero__sub .hero__word { font-weight: 500; color: var(--color-ink); }
-.hero__tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.hero__tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px 6px 10px;
-  border-radius: 9999px;
-  border: 1px solid var(--gray-300);
-  background: transparent;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--color-ink);
-  white-space: nowrap;
-}
-.hero__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-point); }
 .hero__link {
   display: inline-flex;
   align-items: center;
