@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link rel="preload" as="image" href="src/assets/hero-phone-1045.webp?v=2" imagesrcset="src/assets/hero-phone-520.webp?v=2 520w, src/assets/hero-phone-1045.webp?v=2 1045w" imagesizes="(max-width: 900px) 100vw, 46vw" fetchpriority="high">
-  <link rel="stylesheet" href="src/styles/site.css?v=13">
+  <link rel="stylesheet" href="src/styles/site.css?v=14">
   <title data-i18n="site-title">더하퍼 — K-패션 에디터 큐레이션, 서울</title>
 </head>
 <body>
@@ -191,40 +191,56 @@
             <h3 class="picks__title"><span data-i18n="picks-title">에디터 픽</span><span class="picks__byline" data-i18n="picks-byline">by THE HARPER Editors</span></h3>
             <div class="picks__filters" role="tablist" aria-label="필터">
               <button class="picks__tab picks__tab--active" role="tab" aria-selected="true" data-filter="all" data-i18n="picks-filter-all">전체</button>
-              <button class="picks__tab" role="tab" aria-selected="false" data-filter="seongsu" data-i18n="picks-filter-seongsu">성수</button>
-              <button class="picks__tab" role="tab" aria-selected="false" data-filter="hannam" data-i18n="picks-filter-hannam">한남</button>
-              <button class="picks__tab" role="tab" aria-selected="false" data-filter="apgujeong" data-i18n="picks-filter-apgujeong">압구정</button>
+              <button class="picks__tab" role="tab" aria-selected="false" data-filter="brand" data-i18n="picks-filter-brand">K-브랜드</button>
+              <button class="picks__tab" role="tab" aria-selected="false" data-filter="interview" data-i18n="picks-filter-interview">인터뷰</button>
+              <button class="picks__tab" role="tab" aria-selected="false" data-filter="showroom" data-i18n="picks-filter-showroom">쇼룸 코스</button>
             </div>
           </div>
 
-          <!-- sample picks: replace with real curated shops -->
+          <!-- 콘텐츠 제안서(2025-09-30) 기준. 사진은 아직 임시 이미지 -->
           <div class="picks__grid">
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-area="seongsu">
+            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="brand">
               <img src="src/assets/pick-1-seongsu-700.webp?v=1" srcset="src/assets/pick-1-seongsu-700.webp?v=1 700w, src/assets/pick-1-seongsu-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-1-area">성수</span>
-              <span class="pick__title" data-i18n="picks-card-1-title">성수 골목의 컨템포러리 편집샵</span>
+              <span class="pick__area" data-i18n="picks-card-1-tag">K-브랜드</span>
+              <span class="pick__text">
+                <span class="pick__title" data-i18n="picks-card-1-title">셀럽이 입어 유명해진 K-브랜드</span>
+                <span class="pick__sub" data-i18n="picks-card-1-sub">글로니 · 오픈와이와이 · 산산기어 · 혜인서 · 포스트 아카이브 팩션</span>
+              </span>
             </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-area="seongsu">
+            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="interview">
               <img src="src/assets/pick-2-seongsu-700.webp?v=1" srcset="src/assets/pick-2-seongsu-700.webp?v=1 700w, src/assets/pick-2-seongsu-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-2-area">성수</span>
-              <span class="pick__title" data-i18n="picks-card-2-title">붉은 벽돌 창고를 고친 브랜드 쇼룸</span>
+              <span class="pick__area" data-i18n="picks-card-2-tag">디자이너 인터뷰</span>
+              <span class="pick__text">
+                <span class="pick__title" data-i18n="picks-card-2-title">자매가 함께 이끄는 브랜드, 글로니</span>
+                <span class="pick__sub" data-i18n="picks-card-2-sub">최제인 대표 · 최지호 크리에이티브 디렉터</span>
+              </span>
             </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-area="hannam">
+            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="showroom">
               <img src="src/assets/pick-3-hannam-700.webp?v=1" srcset="src/assets/pick-3-hannam-700.webp?v=1 700w, src/assets/pick-3-hannam-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-3-area">한남</span>
-              <span class="pick__title" data-i18n="picks-card-3-title">한남 언덕의 조용한 부티크</span>
+              <span class="pick__area" data-i18n="picks-card-3-tag">쇼룸 코스</span>
+              <span class="pick__text">
+                <span class="pick__title" data-i18n="picks-card-3-title">압구정 쇼룸을 누비는 하루 코스</span>
+                <span class="pick__sub" data-i18n="picks-card-3-sub">하우스 노웨어 · 글로니 도산 · 시눈 · 엘보른 · 아뜰리에 에디션 · 유메르 · 얼바닉30</span>
+              </span>
             </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-area="hannam" hidden>
+            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="brand" hidden>
               <img src="src/assets/pick-4-hannam-700.webp?v=1" srcset="src/assets/pick-4-hannam-700.webp?v=1 700w, src/assets/pick-4-hannam-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-4-area">한남</span>
-              <span class="pick__title" data-i18n="picks-card-4-title">빈티지와 신상을 같이 두는 편집샵</span>
+              <span class="pick__area" data-i18n="picks-card-4-tag">K-브랜드</span>
+              <span class="pick__text">
+                <span class="pick__title" data-i18n="picks-card-4-title">지금 서울에서 가장 많이 입는 브랜드</span>
+                <span class="pick__sub" data-i18n="picks-card-4-sub">그로브 · 마뗑킴 · 시눈 · 젠틀몬스터</span>
+              </span>
             </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-area="apgujeong" hidden>
+            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="interview" hidden>
               <img src="src/assets/pick-5-apgujeong-700.webp?v=1" srcset="src/assets/pick-5-apgujeong-700.webp?v=1 700w, src/assets/pick-5-apgujeong-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-5-area">압구정</span>
-              <span class="pick__title" data-i18n="picks-card-5-title">로데오 뒷길의 디자이너 스튜디오</span>
+              <span class="pick__area" data-i18n="picks-card-5-tag">디자이너 인터뷰</span>
+              <span class="pick__text">
+                <span class="pick__title" data-i18n="picks-card-5-title">입고 싶고 설레는 옷, 오픈와이와이</span>
+                <span class="pick__sub" data-i18n="picks-card-5-sub">김지영 · 김보영 크리에이티브 디렉터</span>
+              </span>
             </a>
           </div>
+
           <a href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" class="picks__more"><span data-i18n="picks-instagram">인스타그램에서 모두 보기</span><svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
         </div>
       </div>
@@ -402,6 +418,6 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
-  <script src="src/site.js?v=7"></script>
+  <script src="src/site.js?v=8"></script>
 </body>
 </html>

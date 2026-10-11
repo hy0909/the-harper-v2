@@ -603,7 +603,8 @@ em { font-style: italic; font-synthesis: none; }
   pointer-events: none;
 }
 .pick:hover img { transform: scale(1.04); }
-.pick__area, .pick__title { position: absolute; left: 20px; right: 20px; z-index: 1; }
+.pick__area, .pick__text { position: absolute; left: 20px; right: 20px; z-index: 1; }
+.pick__text { bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
 .pick__area {
   top: 16px;
   display: inline-flex;
@@ -617,12 +618,17 @@ em { font-style: italic; font-synthesis: none; }
   letter-spacing: 0.04em;
 }
 .pick__title {
-  bottom: 20px;
   font-family: var(--font-headline);
   font-size: 24px;
   font-weight: 300;
   line-height: 1.15;
   letter-spacing: -0.01em;
+}
+.pick__sub {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--on-dark-muted);
 }
 .picks__more {
   margin-top: 24px;
