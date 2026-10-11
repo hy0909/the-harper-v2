@@ -399,9 +399,8 @@ em { font-style: italic; font-synthesis: none; }
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: block;
+  text-align: left;
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 300;
@@ -410,7 +409,6 @@ em { font-style: italic; font-synthesis: none; }
   padding-top: 0.6em;
 }
 .eyebrow--light { color: var(--on-dark-muted); }
-.eyebrow__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.7; }
 
 .statement {
   font-family: var(--font-headline);
