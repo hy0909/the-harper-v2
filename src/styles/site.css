@@ -462,10 +462,6 @@ em { font-style: italic; font-synthesis: none; }
   grid-template-columns: repeat(4, 1fr);
   gap: 40px 32px;
 }
-.value {
-  border-top: 1px solid var(--on-dark-line);
-  padding-top: 20px;
-}
 .value__image {
   width: 100%;
   height: auto;
@@ -480,7 +476,7 @@ em { font-style: italic; font-synthesis: none; }
   font-size: 30px; /* 2배 */
   font-style: italic;
   color: var(--on-dark-faint);
-  margin-bottom: 20px;
+  margin-bottom: 4px; /* 제목과 간격(20px에서 16px 좁힘) */
 }
 .value__title { font-family: var(--font-body); font-size: 20px; font-weight: 500; line-height: 1.4; }
 .value__desc { margin-top: 8px; font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--on-dark-muted); }
