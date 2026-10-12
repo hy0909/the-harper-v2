@@ -466,6 +466,14 @@ em { font-style: italic; font-synthesis: none; }
   border-top: 1px solid var(--on-dark-line);
   padding-top: 20px;
 }
+.value__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
 .value__index {
   display: block;
   font-family: var(--font-display);
