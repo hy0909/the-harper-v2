@@ -440,6 +440,8 @@ em { font-style: italic; font-synthesis: none; }
   color: var(--gray-700);
 }
 .band--dark .statement__aside { color: var(--on-dark-muted); }
+/* About 소개: 라벨 없이 왼쪽부터 시작, 보조 문장은 한 줄로 */
+.about__intro .statement__aside { max-width: none; }
 
 /* ------------------------------------------------------------------
    About: 숫자 + 가치
@@ -901,7 +903,7 @@ em { font-style: italic; font-synthesis: none; }
 }
 .footer__wordmark {
   font-family: var(--font-logo);
-  font-size: clamp(40px, 7vw, 104px);
+  font-size: clamp(20px, 3.5vw, 52px); /* 이전 크기의 절반 */
   white-space: nowrap;
   font-weight: 400;
   letter-spacing: 0.08em;
