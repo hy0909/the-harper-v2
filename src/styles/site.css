@@ -1,4 +1,4 @@
-@import url("tokens.css?v=4");
+@import url("tokens.css?v=5");
 
 /* ------------------------------------------------------------------
    THE HARPER v2 — 어두운 사진 위 큰 세리프 제목, 띠(band)가 어두움·밝음을 번갈아 간다.
@@ -534,7 +534,7 @@ em { font-style: italic; font-synthesis: none; }
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: var(--color-point);
+  background: var(--color-powder);
   color: var(--color-ink);
   padding: 2px 8px;
   border-radius: 9999px;
