@@ -38,6 +38,10 @@ const translations = {
     'tier-discover-desc': '무료 디지털 매거진',
     'tier-daydrop-title': 'DAY DROP',
     'tier-daydrop-desc': '반나절 단품 큐레이션',
+    'spots-discover-img': 'src/assets/spots-discover-phone.webp',
+    'spots-daydrop-img': 'src/assets/spots-daydrop-phone.webp',
+    'spots-discover-alt': '앱 홈의 에디터 큐레이션 피드 화면',
+    'spots-daydrop-alt': '앱의 매장 상세 화면과 예약 금액',
     'tier-discover-more': '에디터가 엄선한 매장과 브랜드 이야기를<br>큐레이션 카드로 무료로 읽어요',
     'tier-daydrop-more': '에디터와 함께 매장을 돌며 단품을 고르는<br>동행 쇼핑 큐레이션 · 4인 기준 128,000원~',
     'tier-capsule-title': 'CAPSULE',
@@ -137,6 +141,10 @@ const translations = {
     'tier-discover-desc': 'Free digital magazine',
     'tier-daydrop-title': 'DAY DROP',
     'tier-daydrop-desc': 'Half-day single curation',
+    'spots-discover-img': 'src/assets/spots-discover-phone-en.webp',
+    'spots-daydrop-img': 'src/assets/spots-daydrop-phone-en.webp',
+    'spots-discover-alt': 'Editor curation feed on the app home screen',
+    'spots-daydrop-alt': 'Shop detail screen in the app with the booking price',
     'tier-discover-more': 'Read editor-picked shops and brand stories<br>as free curation cards',
     'tier-daydrop-more': 'Shop alongside an editor, picking pieces store by store<br>From KRW 128,000 for a group of 4',
     'tier-capsule-title': 'CAPSULE',
@@ -238,6 +246,16 @@ function updatePageTranslations(lang) {
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+
+  // 언어별로 다른 이미지(앱 목업 화면 글자)와 대체 텍스트
+  document.querySelectorAll('[data-i18n-src]').forEach(el => {
+    const key = el.getAttribute('data-i18n-src');
+    if (dict[key] !== undefined && el.getAttribute('src') !== dict[key]) el.setAttribute('src', dict[key]);
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const key = el.getAttribute('data-i18n-alt');
+    if (dict[key] !== undefined) el.alt = dict[key];
   });
 }
 
