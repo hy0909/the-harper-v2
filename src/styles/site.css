@@ -438,6 +438,8 @@ em { font-style: italic; font-synthesis: none; }
   letter-spacing: -0.02em;
 }
 .statement em { font-style: italic; font-synthesis: none; } /* 한글은 가짜 기울임 없이 바로 세움, 라틴만 진짜 이탤릭 */
+/* 영문일 때 섹션 제목은 모두 Noto Sans로(국문은 한글이 이미 Noto Sans KR로 보인다) */
+html:lang(en) .statement { font-family: var(--font-body); }
 .statement--sm { font-size: clamp(30px, 3.4vw, 48px); }
 .statement--xl { font-size: clamp(44px, 6vw, 88px); line-height: 1.1; }
 .statement--contact { font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; } /* Partners 제목(statement--sm)과 같은 크기 */
