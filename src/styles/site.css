@@ -124,6 +124,8 @@ em { font-style: italic; font-synthesis: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: calc(1280px + var(--gutter) * 2); /* 본문(.wrap)과 같은 최대 너비. 바탕색은 화면 끝까지 */
+  margin: 0 auto;
   padding: 0 var(--gutter);
 }
 .header__logo { display: flex; align-items: center; height: 100%; }
@@ -284,6 +286,9 @@ em { font-style: italic; font-synthesis: none; }
   grid-template-areas: "copy visual" "foot foot";
   column-gap: clamp(48px, 6vw, 96px); /* 글 덩어리와 폰 사이 */
   padding: calc(var(--header-h) + 32px) var(--gutter) 28px;
+  width: 100%;
+  max-width: calc(1280px + var(--gutter) * 2); /* 본문(.wrap)과 같은 최대 너비 */
+  margin: 0 auto;
 }
 .hero__copy {
   grid-area: copy;
@@ -459,13 +464,13 @@ em { font-style: italic; font-synthesis: none; }
 .value__index {
   display: block;
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 30px; /* 2배 */
   font-style: italic;
   color: var(--on-dark-faint);
   margin-bottom: 20px;
 }
-.value__title { font-family: var(--font-body); font-size: 18px; font-weight: 500; line-height: 1.4; }
-.value__desc { margin-top: 8px; font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--on-dark-muted); }
+.value__title { font-family: var(--font-body); font-size: 20px; font-weight: 500; line-height: 1.4; }
+.value__desc { margin-top: 8px; font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--on-dark-muted); }
 
 @media (max-width: 1000px) {
   .values { grid-template-columns: repeat(2, 1fr); }
