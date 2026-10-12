@@ -625,7 +625,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 }
 /* 에디터 픽 카드는 링크가 아니라 hover 확대 없음 */
 .pick__text { position: absolute; left: 20px; right: 20px; z-index: 1; }
-.pick__text { bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+.pick__text { bottom: 20px; display: flex; flex-direction: column; gap: 10px; } /* 제목과 설명 사이 2px 늘림 */
 .pick__title {
   font-family: var(--font-headline);
   font-size: 24px;
@@ -635,7 +635,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 }
 .pick__sub {
   font-size: 15px; /* 3px 키움 */
-  font-weight: 300;
+  font-weight: 400; /* 300에서 한 단계 두껍게 */
   line-height: 1.45;
   color: var(--on-dark-muted);
 }
@@ -680,7 +680,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   text-transform: uppercase;
   color: var(--on-dark-muted);
 }
-.step__title { margin-top: 8px; font-family: var(--font-body); font-size: 40px; /* 2배 */ font-weight: 500; line-height: 1.3; }
+.step__title { margin-top: 8px; font-family: var(--font-body); font-size: 37px; /* 40px에서 3px 줄임 */ font-weight: 500; line-height: 1.3; }
 @media (max-width: 1000px) {
   .steps { grid-template-columns: repeat(2, 1fr); }
   .step:nth-child(2) { border-right: none; }
