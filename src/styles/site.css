@@ -320,6 +320,7 @@ em { font-style: italic; font-synthesis: none; }
   align-items: center;
   gap: 8px;
   align-self: flex-start;
+  margin-top: -4px; /* 영문 한 줄과 24px 간격(묶음 gap 28px - 4px) */
   font-size: 14px;
   font-weight: 400;
   color: var(--color-ink);
@@ -374,6 +375,7 @@ em { font-style: italic; font-synthesis: none; }
     row-gap: 32px;
   }
   .hero__copy { justify-content: flex-start; gap: 20px; justify-self: stretch; }
+  .hero__link { margin-top: 4px; } /* 모바일 gap 20px + 4px = 24px */
   .hero__title { font-size: clamp(26px, 7vw, 32px); }
   .hero__sub { font-size: 20px; margin-top: -4px; }
   .hero__visual { justify-content: center; }
