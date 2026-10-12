@@ -445,15 +445,16 @@ html:lang(en) .statement { font-family: var(--font-body); }
 .statement--contact { font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; } /* Partners 제목(statement--sm)과 같은 크기 */
 .statement__aside {
   margin-top: 24px;
-  max-width: 520px;
-  font-size: 16px;
+  max-width: 560px;
+  font-size: 18px; /* 제목 아래 보조 문장(About·Area)과 티어 설명(.tier__more)은 같은 단계: 18px · 300 · 1.75 */
   font-weight: 300;
   line-height: 1.75;
   color: var(--gray-700);
 }
 .band--dark .statement__aside { color: var(--on-dark-muted); }
 /* About 소개: 라벨 없이 왼쪽부터 시작, 보조 문장은 한 줄로 */
-.about__intro .statement__aside { max-width: none; font-size: 18px; } /* 2px 키움 */
+.about__intro .statement__aside { max-width: none; }
+@media (max-width: 768px) { .statement__aside { font-size: 16px; } } /* 모바일은 보조 문장·티어 설명 모두 16px */
 
 /* ------------------------------------------------------------------
    About: 숫자 + 가치
@@ -551,7 +552,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 .tier--open .tier__name { grid-area: n; align-self: center; }
 .tier--open .tier__desc { grid-area: d; align-self: center; }
 .tier--open .tier-badge { grid-area: b; }
-.tier__more { grid-area: m; font-size: 17px; font-weight: 300; line-height: 1.7; color: var(--gray-700); }
+.tier__more { grid-area: m; font-size: 18px; font-weight: 300; line-height: 1.75; color: var(--gray-700); } /* .statement__aside 와 같은 단계 */
 .tier__shot {
   grid-area: s;
   height: 288px; /* 기기 위 2/3만 보이게: 위 여백 20px + 기기 높이(402px)의 2/3 */
@@ -571,7 +572,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   .tier-badge { grid-area: b; }
   .tier--open { row-gap: 6px; grid-template-areas: "n b" "d d" "m m" "s s"; }
   .tier--open .tier__more, .tier--open .tier__shot { margin-top: 10px; }
-  .tier__more { font-size: 15px; }
+  .tier__more { font-size: 16px; }
   .tier__shot { height: 269px; } /* 20px + 기기 높이(374px)의 2/3 */
   .tier__shot img { width: 186px; }
 }
