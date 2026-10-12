@@ -1,4 +1,4 @@
-@import url("tokens.css?v=2");
+@import url("tokens.css?v=3");
 
 /* ------------------------------------------------------------------
    THE HARPER v2 — 어두운 사진 위 큰 세리프 제목, 띠(band)가 어두움·밝음을 번갈아 간다.
@@ -102,21 +102,22 @@ em { font-style: italic; font-synthesis: none; }
 .btn__icon { width: 18px; height: 18px; flex-shrink: 0; }
 
 /* ------------------------------------------------------------------
-   헤더 — 메인 홈페이지(hy0909/the-harper)와 같은 구성.
-   그라운드 바탕에 잉크 글자, 히어로를 벗어나면 바탕색 60% + 블러.
+   헤더 — 앱 미리보기 헤더와 같은 색 구성.
+   코코아 바탕에 밝은 로즈 로고, 메뉴 글자는 흰색. 히어로를 벗어나면 코코아 70% + 블러.
    ------------------------------------------------------------------ */
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--header-h);
-  background: var(--color-ground);
+  background: var(--color-key);
+  color: var(--on-dark);
   z-index: 1000;
 }
 .header.scrolled {
-  background: rgba(250, 249, 246, 0.6);
+  background: rgba(111, 74, 58, 0.7); /* --color-key 70% */
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 .header__container {
   position: relative;
@@ -138,7 +139,7 @@ em { font-style: italic; font-synthesis: none; }
   text-transform: uppercase;
   color: var(--color-ink);
 }
-.header__logo .logo { transition: opacity 200ms ease; }
+.header__logo .logo { color: var(--color-petal); transition: opacity 200ms ease; } /* 헤더에서는 코코아 위 밝은 로즈 */
 @media (max-width: 768px) { .header__logo .logo { font-size: 24px; } }
 .header__logo:hover .logo { opacity: 0.7; }
 
@@ -158,7 +159,7 @@ em { font-style: italic; font-synthesis: none; }
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.01em;
-  color: var(--color-ink);
+  color: var(--on-dark);
   position: relative;
   padding-bottom: 4px;
   transition: color 200ms ease;
@@ -168,7 +169,7 @@ em { font-style: italic; font-synthesis: none; }
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 1px;
-  background: var(--color-ink);
+  background: var(--on-dark);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 300ms ease;
@@ -198,7 +199,9 @@ em { font-style: italic; font-synthesis: none; }
 .lang-toggle__button:hover { opacity: 0.8; }
 .lang-toggle__divider { opacity: 0.3; }
 
-.header__cta { display: none; }
+/* 헤더 버튼: 코코아 바탕 위라 밝은 로즈 바탕에 잉크 글자 */
+.header__cta { display: none; background: var(--color-petal); color: var(--color-ink); }
+.header__cta:hover { background: var(--color-point); color: var(--color-ink); }
 @media (min-width: 1001px) { .header__cta { display: inline-flex; } }
 
 .header__menu-toggle {
@@ -216,12 +219,12 @@ em { font-style: italic; font-synthesis: none; }
 .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 24px; height: 24px; }
 .hamburger__line {
   width: 100%; height: 2px;
-  background: var(--color-ink);
+  background: var(--on-dark);
   border-radius: 1px;
   transition: all 300ms ease;
   transform-origin: 50% 50%;
 }
-.header__menu-toggle:hover .hamburger__line { background: var(--color-key); }
+.header__menu-toggle:hover .hamburger__line { background: var(--color-petal); }
 /* 열렸을 때 X: 1·3번 선을 같은 중심으로 모아 45도 회전 */
 .header__menu-toggle[aria-expanded="true"] .hamburger__line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .header__menu-toggle[aria-expanded="true"] .hamburger__line:nth-child(2) { opacity: 0; }
