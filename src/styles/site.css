@@ -306,7 +306,7 @@ em { font-style: italic; font-synthesis: none; }
 /* 제목: 한글 두 줄(줄바꿈은 "큐레이션하는" 뒤) */
 .hero__title {
   font-family: var(--font-body);
-  font-size: clamp(30px, 3.4vw, 50px);
+  font-size: clamp(32px, calc(3.4vw + 2px), 52px); /* 2px 키움 */
   font-weight: 700;
   line-height: 1.32;
   letter-spacing: -0.03em; /* 자간 -3% */
@@ -386,7 +386,7 @@ em { font-style: italic; font-synthesis: none; }
   }
   .hero__copy { justify-content: flex-start; gap: 20px; justify-self: stretch; }
   .hero__link { margin-top: 44px; } /* 모바일 gap 20px + 44px = 64px */
-  .hero__title { font-size: clamp(26px, 7vw, 32px); }
+  .hero__title { font-size: clamp(28px, calc(7vw + 2px), 34px); }
   .hero__sub { font-size: 20px; margin-top: -4px; }
   .hero__visual { justify-content: center; }
   .hero__phone { width: min(100%, 420px); border-radius: 20px; }
@@ -860,7 +860,7 @@ em { font-style: italic; font-synthesis: none; }
   font-size: 17px;
   font-weight: 300;
   line-height: 1.5;
-  padding: 10px 0 14px;
+  padding: 2px 0 14px; /* 위 여백 10px→2px: 라벨과 입력 글자 사이 16px→8px */
   border: none;
   border-radius: 0;
   color: var(--on-dark);
