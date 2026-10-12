@@ -451,7 +451,7 @@ em { font-style: italic; font-synthesis: none; }
 }
 .band--dark .statement__aside { color: var(--on-dark-muted); }
 /* About 소개: 라벨 없이 왼쪽부터 시작, 보조 문장은 한 줄로 */
-.about__intro .statement__aside { max-width: none; }
+.about__intro .statement__aside { max-width: none; font-size: 18px; } /* 2px 키움 */
 
 /* ------------------------------------------------------------------
    About: 숫자 + 가치
@@ -479,7 +479,7 @@ em { font-style: italic; font-synthesis: none; }
   margin-bottom: 4px; /* 제목과 간격(20px에서 16px 좁힘) */
 }
 .value__title { font-family: var(--font-body); font-size: 20px; font-weight: 500; line-height: 1.4; }
-.value__desc { margin-top: 8px; font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--on-dark-muted); }
+.value__desc { margin-top: 6px; font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--on-dark-muted); }
 
 @media (max-width: 1000px) {
   .values { grid-template-columns: repeat(2, 1fr); }
