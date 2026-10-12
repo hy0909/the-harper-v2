@@ -200,8 +200,9 @@ em { font-style: italic; font-synthesis: none; }
 .lang-toggle__divider { opacity: 0.3; }
 
 /* 헤더 버튼: 코코아 바탕 위라 밝은 로즈 바탕에 잉크 글자 */
-.header__cta { display: none; background: var(--color-beige); color: var(--color-ink); }
-.header__cta:hover { background: color-mix(in srgb, var(--color-beige) 88%, var(--color-ink)); color: var(--color-ink); }
+/* 헤더 버튼(데스크톱): 코코아 바탕 위라 흰 바탕에 잉크 글자 */
+.header__cta { display: none; background: #fff; color: var(--color-ink); }
+.header__cta:hover { background: var(--color-ground); color: var(--color-ink); }
 @media (min-width: 1001px) { .header__cta { display: inline-flex; } }
 
 .header__menu-toggle {
@@ -312,7 +313,8 @@ em { font-style: italic; font-synthesis: none; }
   color: var(--color-ink);
   word-break: keep-all;
 }
-/* 제목 아래 작은 영문 한 줄 */
+/* 제목 아래 작은 영문 한 줄. ‘Seoul,’ 은 잉크, 나머지(Curated by Editors)는 안틱 로즈 */
+.hero__accent { color: var(--color-point); }
 .hero__sub {
   font-family: var(--font-display);
   font-size: clamp(20px, 1.8vw, 28px);
@@ -498,7 +500,7 @@ em { font-style: italic; font-synthesis: none; }
 .tier {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
-  align-items: baseline;
+  align-items: center; /* 영문 이름(DISCOVER…)이 글줄 아래로 처지지 않게 세로 가운데 */
   gap: 24px;
   padding: 26px 0;
   border-bottom: 1px solid var(--gray-200);
@@ -515,7 +517,7 @@ em { font-style: italic; font-synthesis: none; }
 }
 .tier__desc {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -542,7 +544,7 @@ em { font-style: italic; font-synthesis: none; }
   .tier { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n b" "d d"; gap: 6px 16px; padding: 20px 0; }
   .tier:hover { padding-left: 0; }
   .tier__name { grid-area: n; }
-  .tier__desc { grid-area: d; font-size: 13px; }
+  .tier__desc { grid-area: d; font-size: 15px; }
   .tier-badge { grid-area: b; }
 }
 
