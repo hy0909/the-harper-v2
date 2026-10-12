@@ -58,8 +58,11 @@ em { font-style: italic; font-synthesis: none; }
 }
 .skip-link:focus { top: 0; }
 
-/* 폭 */
+/* 폭: 본문 최대 너비 1280px(네이버 메인 기준), 가운데 정렬. 양옆 여백(--gutter)은 그 바깥에 더해진다 */
 .wrap {
+  max-width: calc(1280px + var(--gutter) * 2);
+  margin-left: auto;
+  margin-right: auto;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
