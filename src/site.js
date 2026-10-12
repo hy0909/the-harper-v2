@@ -497,11 +497,28 @@ function initMap() {
     attributionControl: true
   });
 
-  // 타일: OpenStreetMap 표준 타일(무료, 키 불필요). CARTO 무료 타일은 2026년부터 API 키가 없으면
-  // 'API KEY REQUIRED' 워터마크가 찍혀 쓰지 않는다. 타일을 못 받으면 지도 대신 OSM 링크를 보여 준다.
+  mapInstance.attributionControl.setPrefix(false);
+
+  // 타일: Esri 라이트 그레이 베이스(무료, 키 불필요). 색은 CSS 필터로 웜 그레이 톤에 맞춘다.
+  // Esri 타일이 계속 실패하면 OSM으로 바꾸고 더 강한 필터(.area-map--osm)를 건다.
+  // OSM도 실패하면 지도 대신 링크를 보여 준다.
+  const esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxNativeZoom: 13,
+    maxZoom: 19
+  });
   const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19
+  });
+  let esriErrors = 0;
+  esri.on('tileerror', () => {
+    esriErrors += 1;
+    if (esriErrors >= 4 && mapInstance && mapInstance.hasLayer(esri)) {
+      mapInstance.removeLayer(esri);
+      container.classList.add('area-map--osm');
+      osm.addTo(mapInstance);
+    }
   });
   let errors = 0;
   osm.on('tileerror', () => {
@@ -515,7 +532,7 @@ function initMap() {
       container.innerHTML = `<a class="area-map__fallback" href="https://www.openstreetmap.org/#map=14/37.5400/127.0300" target="_blank" rel="noopener">${text}</a>`;
     }
   });
-  osm.addTo(mapInstance);
+  esri.addTo(mapInstance);
   mapInstance.zoomControl.setPosition('bottomright');
 
   const points = [
@@ -524,17 +541,32 @@ function initMap() {
     { lat: 37.5270, lng: 127.0280, key: 'map-apgujeong' }
   ];
   points.forEach(p => {
-    const icon = L.divIcon({ html: '<div class="map-marker"></div>', iconSize: [14, 14], className: 'map-marker-wrapper' });
-    const marker = L.marker([p.lat, p.lng], { icon })
-      .bindPopup(translations[getCurrentLanguage()][p.key] || p.key, { className: 'map-popup', closeButton: true })
+    const text = translations[getCurrentLanguage()][p.key] || p.key;
+    const marker = L.marker([p.lat, p.lng], { icon: mapPinIcon(text) })
+      .bindPopup(text, { className: 'map-popup', closeButton: true })
       .addTo(mapInstance);
     mapMarkers.push({ marker, key: p.key });
+  });
+
+  // 세 핀이 모두 보이도록 맞춘다
+  mapInstance.fitBounds(L.latLngBounds(points.map(p => [p.lat, p.lng])), { padding: [40, 40], maxZoom: 15, animate: false });
+}
+
+// 핀 아이콘: 분홍 물방울 핀 + 이름 라벨. 라벨 글자는 현재 언어를 따른다.
+function mapPinIcon(text) {
+  return L.divIcon({
+    className: 'map-marker-wrapper',
+    html: `<span class="map-pin"></span><span class="map-pin__label">${text}</span>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 39] // 물방울 끝이 좌표에 오도록
   });
 }
 
 function updateMapPopupLanguage() {
   mapMarkers.forEach(item => {
-    item.marker.setPopupContent(translations[getCurrentLanguage()][item.key] || item.key);
+    const text = translations[getCurrentLanguage()][item.key] || item.key;
+    item.marker.setIcon(mapPinIcon(text));
+    item.marker.setPopupContent(text);
   });
 }
 
