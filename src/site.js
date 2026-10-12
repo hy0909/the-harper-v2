@@ -17,6 +17,9 @@ const translations = {
     'hero-cta': '인스타그램 큐레이션 보기',
     'hero-kicker': 'K-Fashion Editor Curation',
     'hero-edition': 'Seoul · 2026',
+    'hero-image-src': 'src/assets/hero-app-rose-logo-1280.webp',
+    'hero-image-srcset': 'src/assets/hero-app-rose-logo-640.webp 640w, src/assets/hero-app-rose-logo-1280.webp 1280w, src/assets/hero-app-rose-logo-2048.webp 2048w',
+    'hero-image-alt': '나무 테이블 위 휴대전화에 갈색 헤더와 분홍 로고, 에디터 사진, 하단 탭이 있는 THE HARPER 앱 홈 화면',
     'section-about': 'About',
     'section-spots': 'Spots',
     'section-process': 'Curation Process',
@@ -120,6 +123,9 @@ const translations = {
     'hero-cta': 'See our curation on Instagram',
     'hero-kicker': 'K-Fashion Editor Curation',
     'hero-edition': 'Seoul · 2026',
+    'hero-image-src': 'src/assets/hero-app-rose-logo-en-1280.webp',
+    'hero-image-srcset': 'src/assets/hero-app-rose-logo-en-640.webp 640w, src/assets/hero-app-rose-logo-en-1280.webp 1280w, src/assets/hero-app-rose-logo-en-2048.webp 2048w',
+    'hero-image-alt': 'The English THE HARPER app on a phone on a wooden table, with a brown header, pink logo, editor portrait and bottom navigation.',
     'section-about': 'About',
     'section-spots': 'Spots',
     'section-process': 'Curation Process',
@@ -249,6 +255,11 @@ function updatePageTranslations(lang) {
   });
 
   // 언어별로 다른 이미지(앱 목업 화면 글자)와 대체 텍스트
+  // 화면 크기에 따라 선택되는 파일도 먼저 바꾼다. src만 바꾸면 이전 언어의 srcset이 남는다.
+  document.querySelectorAll('[data-i18n-srcset]').forEach(el => {
+    const key = el.getAttribute('data-i18n-srcset');
+    if (dict[key] !== undefined && el.getAttribute('srcset') !== dict[key]) el.setAttribute('srcset', dict[key]);
+  });
   document.querySelectorAll('[data-i18n-src]').forEach(el => {
     const key = el.getAttribute('data-i18n-src');
     if (dict[key] !== undefined && el.getAttribute('src') !== dict[key]) el.setAttribute('src', dict[key]);
@@ -257,6 +268,12 @@ function updatePageTranslations(lang) {
     const key = el.getAttribute('data-i18n-alt');
     if (dict[key] !== undefined) el.alt = dict[key];
   });
+
+  const heroPreload = document.getElementById('hero-image-preload');
+  if (heroPreload) {
+    heroPreload.setAttribute('imagesrcset', dict['hero-image-srcset']);
+    heroPreload.setAttribute('href', dict['hero-image-src']);
+  }
 }
 
 function updateLanguageToggleButtons(lang) {
