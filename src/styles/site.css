@@ -560,8 +560,6 @@ em { font-style: italic; font-synthesis: none; }
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--gray-200);
 }
 .picks__title {
   font-family: var(--font-headline);
