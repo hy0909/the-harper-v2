@@ -353,7 +353,7 @@ em { font-style: italic; font-synthesis: none; }
   width: min(100%, calc(100svh - var(--header-h) - 110px), 640px);
   aspect-ratio: 1 / 1;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 24px;
 }
 
