@@ -723,15 +723,17 @@ html:lang(en) .statement { font-family: var(--font-body); }
 .district__text {
   position: absolute; left: 24px; right: 24px; bottom: 24px;
   z-index: 1;
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex; flex-direction: column; gap: 10px;
 }
+/* 글자 스타일은 에디터 픽 카드(.pick__title · .pick__sub)와 같게 */
 .district__name {
-  font-family: var(--font-headline);
-  font-size: clamp(36px, 3.6vw, 52px);
+  font-family: var(--font-body);
+  font-size: 24px;
   font-weight: 300;
-  line-height: 1;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
-.district__desc { font-size: 14px; font-weight: 300; color: var(--on-dark-muted); }
+.district__desc { font-size: 15px; font-weight: 400; line-height: 1.45; color: var(--on-dark-muted); }
 
 .area-map { margin-top: 20px; }
 .area-map__frame {
