@@ -412,8 +412,18 @@ function initReveal() {
 
 
 // ---------- 지도 ----------
+// 벡터 지도(MapLibre + OpenFreeMap, 키 불필요)를 쓴다. 벡터라 어느 배율에서도 선명하고,
+// 색은 스타일 JSON을 받아 우리 회색 팔레트로 바꿔 칠한다. 지도가 못 뜨면 OSM 링크를 보여 준다.
 let mapInstance = null;
 let mapMarkers = [];
+let mapLabelLayers = [];
+const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
+const MAP_FALLBACK_URL = 'https://www.openstreetmap.org/#map=14/37.5400/127.0300';
+const MAP_POINTS = [
+  { lat: 37.5445, lng: 127.0560, key: 'map-seongsu' },
+  { lat: 37.5340, lng: 127.0000, key: 'map-hannam' },
+  { lat: 37.5270, lng: 127.0280, key: 'map-apgujeong' }
+];
 
 function updateMapAriaLabel(lang) {
   const el = document.getElementById('area-map');
@@ -421,98 +431,168 @@ function updateMapAriaLabel(lang) {
   el.setAttribute('aria-label', translations[lang]['area-map-aria-label'] || 'Map');
 }
 
+// 지도 대신 링크를 보여 준다(라이브러리·스타일·타일 중 하나라도 실패했을 때)
+function showMapFallback(container) {
+  if (mapInstance) {
+    try { mapInstance.remove(); } catch (e) { /* 이미 지워진 경우 */ }
+  }
+  mapInstance = null;
+  mapMarkers = [];
+  const lang = getCurrentLanguage();
+  const text = lang === 'ko' ? '지도 열기' : 'Open map';
+  container.innerHTML = `<a class="area-map__fallback" href="${MAP_FALLBACK_URL}" target="_blank" rel="noopener">${text}</a>`;
+}
+
+// 지명 표기: 한국어면 한글 이름, 영어면 영문 이름(없으면 로마자)
+function mapLabelExpression(lang) {
+  if (lang === 'ko') {
+    return ['coalesce', ['get', 'name:ko'], ['get', 'name:nonlatin'], ['get', 'name']];
+  }
+  return ['coalesce', ['get', 'name:en'], ['get', 'name:latin'], ['get', 'name']];
+}
+
+// 스타일 JSON을 우리 팔레트(웜 그레이, 무채색)로 다시 칠하고, 필요 없는 요소는 숨긴다
+function restyleMap(style, lang) {
+  const C = {
+    bg: '#F4F2EE',        // gray-50
+    land: '#EFECE6',
+    park: '#E8E5DE',
+    wood: '#E4E1DA',
+    water: '#D6D2CB',
+    building: '#E9E6DF',
+    buildingLine: '#DDD9D2',
+    roadCasing: '#D9D5CE', // gray-200
+    roadInner: '#FFFFFF',
+    roadMinor: '#FBFAF8',
+    rail: '#D9D5CE',
+    boundary: '#C8C3BA',
+    label: '#5C5750',      // gray-700
+    labelStrong: '#3A362F', // ink
+    halo: 'rgba(244, 242, 238, 0.9)'
+  };
+  // 작은 길 이름·도로 번호·공항·국경 등은 숨겨 지도를 단순하게 한다
+  const hide = /shield|airport|label_country|label_state|boundary_disputed|aeroway|ice_shelf|glacier|dashline|highway-name-minor|highway-name-path/;
+  const labelField = mapLabelExpression(lang);
+  mapLabelLayers = [];
+
+  style.layers.forEach(layer => {
+    const id = layer.id;
+    layer.layout = layer.layout || {};
+    layer.paint = layer.paint || {};
+    if (hide.test(id)) { layer.layout.visibility = 'none'; return; }
+
+    if (layer.type === 'background') layer.paint['background-color'] = C.bg;
+    if (id === 'landuse_residential') layer.paint['fill-color'] = C.land;
+    if (id === 'park') layer.paint['fill-color'] = C.park;
+    if (id === 'landcover_wood') layer.paint['fill-color'] = C.wood;
+    if (id === 'water') layer.paint['fill-color'] = C.water;
+    if (id === 'waterway') layer.paint['line-color'] = C.water;
+    if (id === 'building') { layer.paint['fill-color'] = C.building; layer.paint['fill-outline-color'] = C.buildingLine; }
+    if (/road_area_pier|road_pier/.test(id)) layer.paint[layer.type === 'fill' ? 'fill-color' : 'line-color'] = C.land;
+    if (/casing/.test(id)) layer.paint['line-color'] = C.roadCasing;
+    if (/_inner|_subtle/.test(id)) layer.paint['line-color'] = C.roadInner;
+    if (id === 'highway_minor') layer.paint['line-color'] = C.roadMinor;
+    if (id === 'highway_path') layer.paint['line-color'] = C.roadCasing;
+    if (/^railway/.test(id)) layer.paint['line-color'] = C.rail;
+    if (/^boundary/.test(id)) layer.paint['line-color'] = C.boundary;
+
+    if (layer.type === 'symbol') {
+      const strong = /label_city|label_town/.test(id);
+      layer.paint['text-color'] = strong ? C.labelStrong : C.label;
+      layer.paint['text-halo-color'] = C.halo;
+      layer.paint['text-halo-width'] = 1.2;
+      layer.paint['text-halo-blur'] = 0.4;
+      if (layer.layout['text-field']) {
+        layer.layout['text-field'] = labelField;
+        layer.layout['text-font'] = ['Noto Sans Regular'];
+        mapLabelLayers.push(id);
+      }
+    }
+  });
+  return style;
+}
+
 function initMap() {
   const container = document.getElementById('area-map');
   if (!container) return;
 
-  if (typeof L === 'undefined') {
-    const lang = getCurrentLanguage();
-    const text = lang === 'ko' ? '지도 열기' : 'Open map';
-    container.innerHTML = `<a href="https://www.openstreetmap.org/#map=14/37.5400/127.0300" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:underline;color:var(--color-ink);">${text}</a>`;
+  // 라이브러리가 아직 안 왔으면(defer) 페이지 로드 뒤 한 번 더 시도하고, 그래도 없으면 링크를 보여 준다
+  if (typeof maplibregl === 'undefined') {
+    if (document.readyState === 'complete') { showMapFallback(container); return; }
+    window.addEventListener('load', initMap, { once: true });
     return;
   }
 
+  fetch(MAP_STYLE_URL)
+    .then(res => { if (!res.ok) throw new Error('style ' + res.status); return res.json(); })
+    .then(style => buildMap(container, restyleMap(style, getCurrentLanguage())))
+    .catch(() => showMapFallback(container));
+}
+
+function buildMap(container, style) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  mapInstance = L.map('area-map', {
-    center: [37.536, 127.020],
-    zoom: 13,
-    scrollWheelZoom: false,
-    zoomAnimation: !reduce,
-    fadeAnimation: !reduce,
-    attributionControl: true
-  });
+  try {
+    mapInstance = new maplibregl.Map({
+      container: 'area-map',
+      style,
+      center: [127.020, 37.536],
+      zoom: 13,
+      minZoom: 11,
+      maxZoom: 17,
+      scrollZoom: false,
+      dragRotate: false,
+      pitchWithRotate: false,
+      touchPitch: false,
+      fadeDuration: reduce ? 0 : 300,
+      attributionControl: { compact: false }
+    });
+  } catch (e) {
+    showMapFallback(container); // WebGL을 못 쓰는 환경
+    return;
+  }
+  mapInstance.touchZoomRotate.disableRotation();
+  mapInstance.keyboard.disableRotation();
+  mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false, showZoom: true }), 'bottom-right');
 
-  mapInstance.attributionControl.setPrefix(false);
-
-  // 타일: Esri 라이트 그레이 베이스(무료, 키 불필요). 색은 CSS 필터로 웜 그레이 톤에 맞춘다.
-  // Esri 타일이 계속 실패하면 OSM으로 바꾸고 더 강한 필터(.area-map--osm)를 건다.
-  // OSM도 실패하면 지도 대신 링크를 보여 준다.
-  const esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-    maxNativeZoom: 13,
-    maxZoom: 19
-  });
-  const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
-  });
-  let esriErrors = 0;
-  esri.on('tileerror', () => {
-    esriErrors += 1;
-    if (esriErrors >= 4 && mapInstance && mapInstance.hasLayer(esri)) {
-      mapInstance.removeLayer(esri);
-      container.classList.add('area-map--osm');
-      osm.addTo(mapInstance);
-    }
-  });
+  // 타일이 계속 실패하면 지도 대신 링크를 보여 준다
   let errors = 0;
-  osm.on('tileerror', () => {
+  mapInstance.on('error', () => {
     errors += 1;
-    if (errors >= 6 && mapInstance) {
-      const lang = getCurrentLanguage();
-      const text = lang === 'ko' ? '지도 열기' : 'Open map';
-      mapInstance.remove();
-      mapInstance = null;
-      mapMarkers = [];
-      container.innerHTML = `<a class="area-map__fallback" href="https://www.openstreetmap.org/#map=14/37.5400/127.0300" target="_blank" rel="noopener">${text}</a>`;
-    }
+    if (errors >= 6 && mapInstance) showMapFallback(container);
   });
-  esri.addTo(mapInstance);
-  mapInstance.zoomControl.setPosition('bottomright');
 
-  const points = [
-    { lat: 37.5445, lng: 127.0560, key: 'map-seongsu' },
-    { lat: 37.5340, lng: 127.0000, key: 'map-hannam' },
-    { lat: 37.5270, lng: 127.0280, key: 'map-apgujeong' }
-  ];
-  points.forEach(p => {
+  MAP_POINTS.forEach(p => {
     const text = translations[getCurrentLanguage()][p.key] || p.key;
-    const marker = L.marker([p.lat, p.lng], { icon: mapPinIcon(text) })
-      .bindPopup(text, { className: 'map-popup', closeButton: true })
+    const el = document.createElement('div');
+    el.className = 'map-marker-wrapper';
+    el.innerHTML = `<span class="map-pin"></span><span class="map-pin__label">${text}</span>`;
+    const popup = new maplibregl.Popup({ className: 'map-popup', closeButton: true, offset: [0, -42] }).setText(text);
+    const marker = new maplibregl.Marker({ element: el, anchor: 'top-left', offset: [-15, -39] }) // 물방울 끝이 좌표에 오도록
+      .setLngLat([p.lng, p.lat])
+      .setPopup(popup)
       .addTo(mapInstance);
-    mapMarkers.push({ marker, key: p.key });
+    mapMarkers.push({ marker, el, popup, key: p.key });
   });
 
   // 세 핀이 모두 보이도록 맞춘다
-  mapInstance.fitBounds(L.latLngBounds(points.map(p => [p.lat, p.lng])), { padding: [40, 40], maxZoom: 15, animate: false });
-}
-
-// 핀 아이콘: 분홍 물방울 핀 + 이름 라벨. 라벨 글자는 현재 언어를 따른다.
-function mapPinIcon(text) {
-  return L.divIcon({
-    className: 'map-marker-wrapper',
-    html: `<span class="map-pin"></span><span class="map-pin__label">${text}</span>`,
-    iconSize: [30, 30],
-    iconAnchor: [15, 39] // 물방울 끝이 좌표에 오도록
-  });
+  const bounds = MAP_POINTS.reduce((b, p) => b.extend([p.lng, p.lat]), new maplibregl.LngLatBounds([MAP_POINTS[0].lng, MAP_POINTS[0].lat], [MAP_POINTS[0].lng, MAP_POINTS[0].lat]));
+  mapInstance.fitBounds(bounds, { padding: { top: 56, right: 120, bottom: 56, left: 40 }, maxZoom: 15, duration: 0 });
 }
 
 function updateMapPopupLanguage() {
+  const lang = getCurrentLanguage();
   mapMarkers.forEach(item => {
-    const text = translations[getCurrentLanguage()][item.key] || item.key;
-    item.marker.setIcon(mapPinIcon(text));
-    item.marker.setPopupContent(text);
+    const text = translations[lang][item.key] || item.key;
+    const label = item.el.querySelector('.map-pin__label');
+    if (label) label.textContent = text;
+    item.popup.setText(text);
   });
+  if (mapInstance && mapInstance.isStyleLoaded()) {
+    const field = mapLabelExpression(lang);
+    mapLabelLayers.forEach(id => {
+      if (mapInstance.getLayer(id)) mapInstance.setLayoutProperty(id, 'text-field', field);
+    });
+  }
 }
 
 // ---------- 시작 ----------
@@ -524,9 +604,3 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initMap();
 });
-
-if (typeof L === 'undefined') {
-  window.addEventListener('load', () => {
-    if (typeof L !== 'undefined' && !mapInstance) initMap();
-  });
-}
