@@ -48,17 +48,10 @@ const translations = {
     'tier-badge-coming': '추후 공개',
     'picks-title': '에디터 픽',
     'picks-instagram': '인스타그램에서 모두 보기',
-    'picks-filter-all': '전체',
-    'picks-filter-brand': 'K-브랜드',
-    'picks-filter-interview': '인터뷰',
-    'picks-filter-showroom': '쇼룸 코스',
-    'picks-card-1-tag': 'K-브랜드',
     'picks-card-1-title': '셀럽이 입어서 유명한 브랜드',
     'picks-card-1-sub': '셀럽의 선택부터 독보적인 디자인까지, 지금 패션 신에서 가장 뜨거운 K-브랜드를 소개합니다.',
-    'picks-card-2-tag': '디자이너 인터뷰',
     'picks-card-2-title': 'K-BRAND 디자이너 인터뷰',
     'picks-card-2-sub': '지금 해외에서 주목받는 한국 브랜드의 디렉터들, 그중에서도 브랜드를 함께 이끄는 자매 디렉터의 이야기를 들려드립니다.',
-    'picks-card-3-tag': '쇼룸 코스',
     'picks-card-3-title': 'K-BRAND 쇼룸 소개',
     'picks-card-3-sub': '다시 서울에서 가장 뜨거운 동네로 떠오른 압구정. 주목받는 K-브랜드 쇼룸을 따라 걷는 하루 코스를 제안합니다.',
     'process-statement': '발굴에서 노출까지,<br>에디터가 <em>직접</em> 선정',
@@ -152,17 +145,10 @@ const translations = {
     'tier-badge-coming': 'Coming soon',
     'picks-title': 'Editor’s Picks',
     'picks-instagram': 'See all on Instagram',
-    'picks-filter-all': 'All',
-    'picks-filter-brand': 'K-Brands',
-    'picks-filter-interview': 'Interviews',
-    'picks-filter-showroom': 'Showroom Route',
-    'picks-card-1-tag': 'K-Brands',
     'picks-card-1-title': 'Brands made famous by the celebrities who wear them',
     'picks-card-1-sub': 'From celebrity picks to one-of-a-kind design, meet the hottest K-brands in fashion right now.',
-    'picks-card-2-tag': 'Designer Interview',
     'picks-card-2-title': 'K-Brand Designer Interviews',
     'picks-card-2-sub': 'Meet the directors behind the Korean brands the world is watching, starting with the sisters who run theirs together.',
-    'picks-card-3-tag': 'Showroom Route',
     'picks-card-3-title': 'K-Brand Showroom Guide',
     'picks-card-3-sub': 'Apgujeong is Seoul’s hottest neighborhood again. A one-day route through the K-brand showrooms everyone is talking about.',
     'process-statement': 'From scouting to publishing,<br>hand-picked by our editors <em>themselves</em>',
@@ -424,47 +410,6 @@ function initReveal() {
   items.forEach(el => io.observe(el));
 }
 
-// ---------- 에디터 픽 필터 ----------
-function initPicksFilter() {
-  const tabs = document.querySelectorAll('.picks__tab');
-  const cards = document.querySelectorAll('.pick');
-  if (!tabs.length) return;
-
-  // 한 줄(3장)만 보여 준다. 탭에 맞는 카드 중 앞의 세 장까지만.
-  const MAX_VISIBLE = 3;
-  const apply = (type) => {
-    let shown = 0;
-    cards.forEach(card => {
-      const match = type === 'all' || card.dataset.type === type;
-      const show = match && shown < MAX_VISIBLE;
-      if (show) {
-        shown += 1;
-        card.removeAttribute('hidden');
-        card.classList.add('is-in');
-      } else {
-        card.setAttribute('hidden', '');
-      }
-    });
-  };
-  apply('all');
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        const on = t === tab;
-        t.classList.toggle('picks__tab--active', on);
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      apply(tab.dataset.filter);
-    });
-    tab.addEventListener('keydown', (e) => {
-      let target = index;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); target = (index + 1) % tabs.length; }
-      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); target = (index - 1 + tabs.length) % tabs.length; }
-      if (target !== index) { tabs[target].click(); tabs[target].focus(); }
-    });
-  });
-}
 
 // ---------- 지도 ----------
 let mapInstance = null;
@@ -577,7 +522,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initContactForm();
   initReveal();
-  initPicksFilter();
   initMap();
 });
 
