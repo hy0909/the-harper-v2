@@ -19,7 +19,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link rel="preload" as="image" href="src/assets/hero-shelf-1254.webp?v=2" imagesrcset="src/assets/hero-shelf-600.webp?v=2 600w, src/assets/hero-shelf-1254.webp?v=2 1116w" imagesizes="(max-width: 900px) 100vw, 44vw" fetchpriority="high">
-  <link rel="stylesheet" href="src/styles/site.css?v=19">
+  <link rel="stylesheet" href="src/styles/site.css?v=20">
   <title data-i18n="site-title">더하퍼 — K-패션 에디터 큐레이션, 서울</title>
 </head>
 <body>
@@ -187,48 +187,32 @@
             </div>
           </div>
 
-          <!-- 콘텐츠 제안서(2025-09-30) 기준. 사진은 아직 임시 이미지 -->
+          <!-- 콘텐츠 제안서(2025-09-30)의 콘텐츠 3개. 누르면 아무 데도 가지 않는다(상세 없음). 사진: ①·③은 앱과 같은 사진, ②는 제안서 6쪽 글로니 디렉터 사진 -->
           <div class="picks__grid">
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="brand">
-              <img src="src/assets/pick-1-seongsu-700.webp?v=1" srcset="src/assets/pick-1-seongsu-700.webp?v=1 700w, src/assets/pick-1-seongsu-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" alt="" loading="lazy" decoding="async">
+            <div class="pick reveal" data-type="brand">
+              <img src="src/assets/pick-brand-700.webp?v=1" srcset="src/assets/pick-brand-700.webp?v=1 700w, src/assets/pick-brand-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="900" height="1200" alt="" loading="lazy" decoding="async">
               <span class="pick__area" data-i18n="picks-card-1-tag">K-브랜드</span>
               <span class="pick__text">
-                <span class="pick__title" data-i18n="picks-card-1-title">셀럽이 입어 유명해진 K-브랜드</span>
-                <span class="pick__sub" data-i18n="picks-card-1-sub">글로니 · 오픈와이와이 · 산산기어 · 혜인서 · 포스트 아카이브 팩션</span>
+                <span class="pick__title" data-i18n="picks-card-1-title">셀럽이 입어서 유명한 브랜드</span>
+                <span class="pick__sub" data-i18n="picks-card-1-sub">셀럽의 선택부터 독보적인 디자인까지, 지금 패션 신에서 가장 뜨거운 K-브랜드를 소개합니다.</span>
               </span>
-            </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="interview">
-              <img src="src/assets/pick-2-seongsu-700.webp?v=1" srcset="src/assets/pick-2-seongsu-700.webp?v=1 700w, src/assets/pick-2-seongsu-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="pick reveal" data-type="interview">
+              <img src="src/assets/pick-interview-700.webp?v=1" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="700" height="839" alt="" loading="lazy" decoding="async">
               <span class="pick__area" data-i18n="picks-card-2-tag">디자이너 인터뷰</span>
               <span class="pick__text">
-                <span class="pick__title" data-i18n="picks-card-2-title">자매가 함께 이끄는 브랜드, 글로니</span>
-                <span class="pick__sub" data-i18n="picks-card-2-sub">최제인 대표 · 최지호 크리에이티브 디렉터</span>
+                <span class="pick__title" data-i18n="picks-card-2-title">K-BRAND 디자이너 인터뷰</span>
+                <span class="pick__sub" data-i18n="picks-card-2-sub">지금 해외에서 주목받는 한국 브랜드의 디렉터들, 그중에서도 브랜드를 함께 이끄는 자매 디렉터의 이야기를 들려드립니다.</span>
               </span>
-            </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="showroom">
-              <img src="src/assets/pick-3-hannam-700.webp?v=1" srcset="src/assets/pick-3-hannam-700.webp?v=1 700w, src/assets/pick-3-hannam-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="pick reveal" data-type="showroom">
+              <img src="src/assets/pick-showroom-700.webp?v=1" srcset="src/assets/pick-showroom-700.webp?v=1 700w, src/assets/pick-showroom-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
               <span class="pick__area" data-i18n="picks-card-3-tag">쇼룸 코스</span>
               <span class="pick__text">
-                <span class="pick__title" data-i18n="picks-card-3-title">압구정 쇼룸을 누비는 하루 코스</span>
-                <span class="pick__sub" data-i18n="picks-card-3-sub">하우스 노웨어 · 글로니 도산 · 시눈 · 엘보른 · 아뜰리에 에디션 · 유메르 · 얼바닉30</span>
+                <span class="pick__title" data-i18n="picks-card-3-title">K-BRAND 쇼룸 소개</span>
+                <span class="pick__sub" data-i18n="picks-card-3-sub">다시 서울에서 가장 뜨거운 동네로 떠오른 압구정. 주목받는 K-브랜드 쇼룸을 따라 걷는 하루 코스를 제안합니다.</span>
               </span>
-            </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="brand" hidden>
-              <img src="src/assets/pick-4-hannam-700.webp?v=1" srcset="src/assets/pick-4-hannam-700.webp?v=1 700w, src/assets/pick-4-hannam-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-4-tag">K-브랜드</span>
-              <span class="pick__text">
-                <span class="pick__title" data-i18n="picks-card-4-title">지금 서울에서 가장 많이 입는 브랜드</span>
-                <span class="pick__sub" data-i18n="picks-card-4-sub">그로브 · 마뗑킴 · 시눈 · 젠틀몬스터</span>
-              </span>
-            </a>
-            <a class="pick reveal" href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" data-type="interview" hidden>
-              <img src="src/assets/pick-5-apgujeong-700.webp?v=1" srcset="src/assets/pick-5-apgujeong-700.webp?v=1 700w, src/assets/pick-5-apgujeong-1200.webp?v=1 1200w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
-              <span class="pick__area" data-i18n="picks-card-5-tag">디자이너 인터뷰</span>
-              <span class="pick__text">
-                <span class="pick__title" data-i18n="picks-card-5-title">입고 싶고 설레는 옷, 오픈와이와이</span>
-                <span class="pick__sub" data-i18n="picks-card-5-sub">김지영 · 김보영 크리에이티브 디렉터</span>
-              </span>
-            </a>
+            </div>
           </div>
 
           <a href="https://www.instagram.com/theharper.kr" target="_blank" rel="noopener" class="picks__more"><span data-i18n="picks-instagram">인스타그램에서 모두 보기</span><svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
@@ -408,6 +392,6 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
-  <script src="src/site.js?v=9"></script>
+  <script src="src/site.js?v=10"></script>
 </body>
 </html>
