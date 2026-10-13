@@ -769,7 +769,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   white-space: nowrap;
   padding: 5px 12px;
   border-radius: 999px;
-  background: var(--color-key); /* 코코아 브라운 */
+  background: var(--color-ink); /* 잉크(검정 계열) */
   box-shadow: 0 2px 8px rgba(58, 54, 47, 0.25);
   font-family: var(--font-body);
   font-size: 14px; font-weight: 700; line-height: 1.3;
