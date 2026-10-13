@@ -765,11 +765,11 @@ html:lang(en) .statement { font-family: var(--font-body); }
   white-space: nowrap;
   padding: 5px 12px;
   border-radius: 999px;
-  background: #E07A89;
+  background: var(--color-key); /* 코코아 브라운 */
   box-shadow: 0 2px 8px rgba(58, 54, 47, 0.25);
   font-family: var(--font-body);
   font-size: 14px; font-weight: 700; line-height: 1.3;
-  color: #fff;
+  color: var(--color-powder); /* 파우더 로즈 */
 }
 /* 팝업: MapLibre 기본 모양을 지우고 흰 카드로 */
 .map-popup .maplibregl-popup-content { background: white; border-radius: 6px; padding: 8px 28px 8px 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); border: none; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--color-ink); line-height: 1.4; }
