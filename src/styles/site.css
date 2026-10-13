@@ -470,7 +470,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 4px; /* 번호와 간격 20px 줄임 */
 }
 .value__index {
   display: block;
