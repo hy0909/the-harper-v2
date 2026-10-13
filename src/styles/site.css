@@ -476,7 +476,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 .value__index {
   display: block;
   font-family: var(--font-display);
-  font-size: 30px; /* 2배 */
+  font-size: 34px; /* 4px 키움 */
   font-style: italic;
   color: var(--on-dark-faint);
   margin-bottom: 4px; /* 제목과 간격(20px에서 16px 좁힘) */
@@ -524,7 +524,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 }
 .tier__desc {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 20px; /* 2px 키움 */
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -533,7 +533,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 .tier-badge {
   justify-self: end;
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 12px; /* 2px 키움 */
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -568,7 +568,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   .tier { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n b" "d d"; gap: 6px 16px; padding: 20px 0; }
   .tier:hover { padding-left: 0; }
   .tier__name { grid-area: n; }
-  .tier__desc { grid-area: d; font-size: 15px; }
+  .tier__desc { grid-area: d; font-size: 17px; }
   .tier-badge { grid-area: b; }
   .tier--open { row-gap: 6px; grid-template-areas: "n b" "d d" "m m" "s s"; }
   .tier--open .tier__more, .tier--open .tier__shot { margin-top: 10px; }
