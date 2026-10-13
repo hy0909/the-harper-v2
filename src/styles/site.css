@@ -67,7 +67,7 @@ em { font-style: italic; font-synthesis: none; }
   padding-right: var(--gutter);
 }
 @media (max-width: 1100px) { :root { --gutter: 24px; } }
-@media (max-width: 768px) { :root { --gutter: 16px; } }
+@media (max-width: 768px) { :root { --gutter: 24px; --header-h: 64px; } } /* 모바일: 좌우 여백 24px, 헤더 높이 72→64px */
 
 /* ------------------------------------------------------------------
    버튼 (디자인 시스템 5장)
@@ -392,6 +392,11 @@ em { font-style: italic; font-synthesis: none; }
   .hero__foot { margin-top: 0; }
   .hero__meta--right { display: none; }
 }
+@media (max-width: 768px) {
+  .hero__phone { width: 100%; } /* 사진도 글과 같은 좌우 여백(24px)까지 넓힘 */
+  .hero__link { margin-bottom: 40px; } /* 인스타그램 링크 아래 40px 더 */
+  .header__menu-toggle { margin-right: -10px; } /* 44px 터치 영역 안 아이콘(24px)의 오른쪽 끝을 좌우 여백에 맞춤 */
+}
 
 /* ------------------------------------------------------------------
    띠(band)와 공통 머리글
@@ -439,9 +444,7 @@ em { font-style: italic; font-synthesis: none; }
 .statement em { font-style: italic; font-synthesis: none; } /* 한글은 가짜 기울임 없이 바로 세움, 라틴만 진짜 이탤릭 */
 /* 영문일 때 섹션 제목은 모두 Noto Sans로(국문은 한글이 이미 Noto Sans KR로 보인다) */
 html:lang(en) .statement { font-family: var(--font-body); }
-.statement--sm { font-size: clamp(30px, 3.4vw, 48px); }
 .statement--xl { font-size: clamp(44px, 6vw, 88px); line-height: 1.1; }
-.statement--contact { font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; } /* Partners 제목(statement--sm)과 같은 크기 */
 .statement__aside {
   margin-top: 24px;
   max-width: 560px;
@@ -488,10 +491,14 @@ html:lang(en) .statement { font-family: var(--font-body); }
 }
 @media (max-width: 768px) {
   .values { margin-top: 48px; grid-template-columns: 1fr; gap: 48px; } /* 설명 끝과 다음 사진 사이 20px 늘림 */
+  .value__image { margin-bottom: -2px; } /* 사진과 번호 사이 6px 좁힘 */
 }
 
 /* Spots 영역: 한글과 섞여 쓰는 숫자·영문(1:1, 1박, VIP, K-)도 세리프 대신 한글 서체(Noto Sans KR)로 */
 #spots .statement,
+#area .statement,
+#partners .statement,
+#contact .statement, /* 성수·한남·압구정 · 파트너 · 협업 문의 제목도 Spots 제목과 같은 서체·크기·굵기 */
 #spots .tier__name,
 #spots .picks__title,
 #spots .pick__title { font-family: var(--font-body); }
@@ -830,7 +837,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   opacity: 0.62;
 }
 @media (max-width: 1000px) { .partners { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px) { .partners { margin-top: 40px; gap: 12px; } }
+@media (max-width: 768px) { .partners { margin-top: 28px; gap: 12px; } } /* 모바일: 파트너 제목과 로고 사이 40→28px */
 
 /* ------------------------------------------------------------------
    Contact
