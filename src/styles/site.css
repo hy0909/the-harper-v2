@@ -478,7 +478,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
   font-size: 38px; /* 4px씩 두 번 키움 */
   font-style: italic;
   color: var(--on-dark-faint);
-  margin-bottom: 4px; /* 제목과 간격(20px에서 16px 좁힘) */
+  margin-bottom: -4px; /* 제목과 간격: 4px에서 8px 더 좁힘(숫자 줄 높이 안쪽으로 당김) */
 }
 .value__title { font-family: var(--font-body); font-size: 20px; font-weight: 500; line-height: 1.4; }
 .value__desc { margin-top: 4px; font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--on-dark-muted); }
@@ -993,3 +993,17 @@ html:lang(en) .statement { font-family: var(--font-body); }
   .reveal { opacity: 1; transform: none; transition: none; }
   .pick img, .district img { transition: none; }
 }
+
+/* ------------------------------------------------------------------
+   한국어 글자 자간 -2% (영어 화면은 그대로)
+   한글이 보이는 요소만 덮어쓴다. 영문만 쓰는 곳(워드마크, 메뉴, 날짜·라벨 등)은 원래 값을 둔다.
+   ------------------------------------------------------------------ */
+html:lang(ko) body { letter-spacing: -0.02em; }
+html:lang(ko) .btn { letter-spacing: -0.02em; }
+html:lang(ko) .hero__title { letter-spacing: -0.02em; }
+html:lang(ko) .tier__name { letter-spacing: -0.02em; }
+html:lang(ko) .tier-badge { letter-spacing: -0.02em; }
+html:lang(ko) .step__label { letter-spacing: -0.02em; }
+html:lang(ko) .pick__title { letter-spacing: -0.02em; }
+html:lang(ko) .district__name { letter-spacing: -0.02em; }
+html:lang(ko) .form__label { letter-spacing: -0.02em; }
