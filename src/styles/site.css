@@ -552,6 +552,8 @@ html:lang(en) .statement { font-family: var(--font-body); }
 .tier--open .tier__desc { grid-area: d; align-self: center; }
 .tier--open .tier-badge { grid-area: b; }
 .tier__more { grid-area: m; font-size: 18px; font-weight: 300; line-height: 1.75; color: var(--gray-700); } /* .statement__aside 와 같은 단계 */
+.tier__price { display: block; margin-top: 4px; font-size: 16px; font-weight: 300; color: var(--gray-500); } /* 가격은 한 단계 작고 연하게 */
+.br-pc { display: inline; }
 .tier__shot {
   grid-area: s;
   height: 288px; /* 기기 위 2/3만 보이게: 위 여백 20px + 기기 높이(402px)의 2/3 */
@@ -572,6 +574,8 @@ html:lang(en) .statement { font-family: var(--font-body); }
   .tier--open { row-gap: 6px; grid-template-areas: "n b" "d d" "m m" "s s"; }
   .tier--open .tier__more, .tier--open .tier__shot { margin-top: 10px; }
   .tier__more { font-size: 16px; }
+  .tier__price { font-size: 14px; }
+  .br-pc { display: none; } /* 모바일은 화면 폭에 맞춰 알아서 줄바꿈 */
   .tier__shot { height: 269px; } /* 20px + 기기 높이(374px)의 2/3 */
   .tier__shot img { width: 186px; }
 }
