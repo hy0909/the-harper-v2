@@ -378,13 +378,13 @@ em { font-style: italic; font-synthesis: none; }
   .hero { min-height: 0; }
   .hero__frame {
     grid-template-columns: 1fr;
-    grid-template-areas: "copy" "visual" "foot";
+    grid-template-areas: "visual" "copy" "foot"; /* 모바일은 사진 먼저, 그 아래 글 */
     padding-top: calc(var(--header-h) + 16px);
     padding-bottom: 20px;
     row-gap: 32px;
   }
   .hero__copy { justify-content: flex-start; gap: 20px; justify-self: stretch; }
-  .hero__link { margin-top: 52px; } /* 모바일 gap 20px + 52px = 72px */
+  .hero__link { margin-top: 20px; } /* 모바일 gap 20px + 20px = 40px (영문 한 줄과 인스타그램 링크 사이) */
   .hero__title { font-size: clamp(30px, calc(7vw + 4px), 36px); }
   .hero__sub { font-size: 20px; margin-top: 0; }
   .hero__visual { justify-content: center; }
@@ -995,15 +995,16 @@ html:lang(en) .statement { font-family: var(--font-body); }
 }
 
 /* ------------------------------------------------------------------
-   한국어 글자 자간 -2% (영어 화면은 그대로)
+   한국어 글자 자간 -4% (영어 화면은 그대로)
    한글이 보이는 요소만 덮어쓴다. 영문만 쓰는 곳(워드마크, 메뉴, 날짜·라벨 등)은 원래 값을 둔다.
    ------------------------------------------------------------------ */
-html:lang(ko) body { letter-spacing: -0.02em; }
-html:lang(ko) .btn { letter-spacing: -0.02em; }
-html:lang(ko) .hero__title { letter-spacing: -0.02em; }
-html:lang(ko) .tier__name { letter-spacing: -0.02em; }
-html:lang(ko) .tier-badge { letter-spacing: -0.02em; }
-html:lang(ko) .step__label { letter-spacing: -0.02em; }
-html:lang(ko) .pick__title { letter-spacing: -0.02em; }
-html:lang(ko) .district__name { letter-spacing: -0.02em; }
-html:lang(ko) .form__label { letter-spacing: -0.02em; }
+html:lang(ko) body { letter-spacing: -0.04em; }
+html:lang(ko) .btn { letter-spacing: -0.04em; }
+html:lang(ko) .hero__title { letter-spacing: -0.04em; }
+html:lang(ko) .tier__name { letter-spacing: -0.04em; }
+html:lang(ko) .tier-badge { letter-spacing: -0.04em; }
+html:lang(ko) .step__label { letter-spacing: -0.04em; }
+html:lang(ko) .pick__title { letter-spacing: -0.04em; }
+html:lang(ko) .district__name { letter-spacing: -0.04em; }
+html:lang(ko) .form__label { letter-spacing: -0.04em; }
+html:lang(ko) .statement { letter-spacing: -0.04em; }
