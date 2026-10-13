@@ -999,6 +999,9 @@ html:lang(en) .statement { font-family: var(--font-body); }
    한글이 보이는 요소만 덮어쓴다. 영문만 쓰는 곳(워드마크, 메뉴, 날짜·라벨 등)은 원래 값을 둔다.
    ------------------------------------------------------------------ */
 html:lang(ko) body { letter-spacing: -0.04em; }
+/* body 값을 그대로 물려받으면 16px 기준 px(-0.64px)로 고정된다. 자기 글자 크기 기준 -4%가 되게 요소마다 다시 계산한다.
+   :where 로 우선순위를 0으로 둬서, 자간을 따로 정한 요소(영문 라벨 등)는 원래 값을 지킨다 */
+:where(html:lang(ko) body *) { letter-spacing: -0.04em; }
 html:lang(ko) .btn { letter-spacing: -0.04em; }
 html:lang(ko) .hero__title { letter-spacing: -0.04em; }
 html:lang(ko) .tier__name { letter-spacing: -0.04em; }
