@@ -67,7 +67,7 @@ em { font-style: italic; font-synthesis: none; }
   padding-right: var(--gutter);
 }
 @media (max-width: 1100px) { :root { --gutter: 24px; } }
-@media (max-width: 768px) { :root { --gutter: 24px; --header-h: 64px; } } /* 모바일: 좌우 여백 24px, 헤더 높이 72→64px */
+@media (max-width: 768px) { :root { --gutter: 24px; --header-h: 56px; } } /* 모바일: 좌우 여백 24px, 헤더 높이 72→64→56px */
 
 /* ------------------------------------------------------------------
    버튼 (디자인 시스템 5장)
@@ -491,7 +491,7 @@ html:lang(en) .statement { font-family: var(--font-body); }
 }
 @media (max-width: 768px) {
   .values { margin-top: 48px; grid-template-columns: 1fr; gap: 48px; } /* 설명 끝과 다음 사진 사이 20px 늘림 */
-  .value__image { margin-bottom: -2px; } /* 사진과 번호 사이 6px 좁힘 */
+  .value__image { margin-bottom: -10px; } /* 사진과 번호 사이: 6px 좁힌 데서 8px 더 좁힘 */
 }
 
 /* Spots 영역: 한글과 섞여 쓰는 숫자·영문(1:1, 1박, VIP, K-)도 세리프 대신 한글 서체(Noto Sans KR)로 */
@@ -574,6 +574,10 @@ html:lang(en) .statement { font-family: var(--font-body); }
 @media (max-width: 768px) {
   .tiers { margin-top: 48px; }
   .tier { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n b" "d d"; gap: 6px 16px; padding: 20px 0; }
+  /* 선과 글자 사이를 위아래 똑같이(약 23px). 영문 이름(CAPSULE 등)은 줄 높이 안에 아래 빈 곳이 5.5px 더 있어 아래 여백을 그만큼 줄이고,
+     목업 상자로 끝나는 티어는 위쪽 한글 글자와 같은 거리가 되게 아래 여백을 3px 늘린다 */
+  .tier:not(.tier--open) { padding-bottom: 14.5px; }
+  .tier--open { padding-bottom: 23px; }
   .tier:hover { padding-left: 0; }
   .tier__name { grid-area: n; }
   .tier__desc { grid-area: d; font-size: 17px; }
@@ -667,6 +671,8 @@ html:lang(en) .statement { font-family: var(--font-body); }
 @media (max-width: 768px) {
   .picks { margin-top: 64px; }
   .picks__grid { grid-template-columns: 1fr; gap: 12px; }
+  .pick__text { left: 24px; right: 24px; bottom: 24px; } /* 사진 안 글자 여백 20→24px */
+  .pick__title { font-weight: 400; } /* 제목 한 단계 두껍게(300→400) */
 }
 
 /* ------------------------------------------------------------------
@@ -806,6 +812,8 @@ html:lang(en) .statement { font-family: var(--font-body); }
 @media (max-width: 768px) {
   .districts { margin-top: 48px; grid-template-columns: 1fr; gap: 12px; }
   .district { aspect-ratio: 4 / 3; }
+  .district__text { left: 28px; right: 28px; bottom: 28px; } /* 사진 안 글자 여백 24→28px */
+  .district__name { font-weight: 400; } /* 제목 한 단계 두껍게(300→400) */
   .area-map { margin-top: 12px; }
   .area-map__frame { height: 320px; }
 }
