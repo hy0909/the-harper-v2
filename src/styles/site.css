@@ -1026,3 +1026,17 @@ html:lang(ko) .pick__title { letter-spacing: -0.04em; }
 html:lang(ko) .district__name { letter-spacing: -0.04em; }
 html:lang(ko) .form__label { letter-spacing: -0.04em; }
 html:lang(ko) .statement { letter-spacing: -0.04em; }
+
+/* ------------------------------------------------------------------
+   헤더·푸터 메뉴의 영문 글자 자간 -1% (KO·EN 화면, 모바일·데스크톱 모두)
+   헤더 메뉴(About~Contact)·KO/EN 버튼, 모바일 메뉴, 푸터 Menu·Social 제목과 링크.
+   협업 문의 버튼은 영어 화면에서만 영문(Partner with us)이라 영어 화면에만 준다.
+   워드마크 THE HARPER는 로고라 원래 자간(0.08em)을 그대로 둔다.
+   ------------------------------------------------------------------ */
+.header__nav-link,
+.lang-toggle__button,
+.mobile-menu__link,
+.footer__column-title,
+.footer__links a,
+html:lang(en) .header__cta,
+html:lang(en) .mobile-menu__cta { letter-spacing: -0.01em; }
